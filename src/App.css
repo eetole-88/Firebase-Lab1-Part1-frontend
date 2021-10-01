@@ -5,3 +5,17 @@ body {
 h1 {
   margin-left: 35px;
 }
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 35px;
+}
+
+.signed-in img {
+  height: 22px;
+  margin: 0 0.5em;
+  border-radius: 50%;
+}
