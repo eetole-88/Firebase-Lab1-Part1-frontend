@@ -13,3 +13,13 @@ export function fetchAllShoutouts(): Promise<Shoutout[]> {
 export function addShoutout(shoutout: Shoutout): Promise<Shoutout> {
   return axios.post(`${baseUrl}/shoutouts`, shoutout).then((res) => res.data);
 }
+
+export function fetchShoutoutsByTo(name: string): Promise<Shoutout[]> {
+  return axios
+    .get(`${baseUrl}/shoutouts`, {
+      params: {
+        shoutoutTo: name,
+      },
+    })
+    .then((res) => res.data);
+}

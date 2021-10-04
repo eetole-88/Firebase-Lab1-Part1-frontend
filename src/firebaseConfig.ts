@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,3 +25,5 @@ export function signInWithGoogle(): void {
 export function signOut(): void {
   auth.signOut();
 }
+
+export const storage = getStorage(app);

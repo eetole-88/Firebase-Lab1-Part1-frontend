@@ -25,3 +25,12 @@ h3 {
 .shoutOutFrom {
   margin-top: 0px;
 }
+
+button {
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.shoutoutImage {
+  width: 75px;
+}

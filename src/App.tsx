@@ -1,8 +1,17 @@
 import React, { useContext } from "react";
 import "./App.css";
+import PersonalShoutouts from "./components/ShoutoutListByUser";
+("./PersonalShoutouts");
 import ShoutoutList from "./components/ShoutoutList";
 import { AuthContext } from "./context/auth-context";
 import { signInWithGoogle, signOut } from "./firebaseConfig";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import ShoutoutListByUser from "./components/ShoutoutListByUser";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -24,8 +33,19 @@ function App() {
           </div>
         )}
       </header>
+
       {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-      <ShoutoutList />
+
+      <Router>
+        <Switch>
+          <Route path="/user/:name" exact>
+            <ShoutoutListByUser />
+          </Route>
+          <Route path="/">
+            <ShoutoutList />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
