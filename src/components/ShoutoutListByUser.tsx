@@ -37,6 +37,7 @@ const ShoutoutListByUser = () => {
   useEffect(() => {
     loadShoutouts();
   }, [name]);
+
   return (
     <div className="ShoutoutListByUser">
       <Link to="/" className="backLink">
