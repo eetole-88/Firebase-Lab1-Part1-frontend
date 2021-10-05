@@ -1,16 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import "./App.css";
-import PersonalShoutouts from "./components/ShoutoutListByUser";
-("./PersonalShoutouts");
 import ShoutoutList from "./components/ShoutoutList";
 import { AuthContext } from "./context/auth-context";
 import { signInWithGoogle, signOut } from "./firebaseConfig";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ShoutoutListByUser from "./components/ShoutoutListByUser";
 
 function App() {
