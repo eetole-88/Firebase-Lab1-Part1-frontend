@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import Shoutout from "../models/shoutout-api-model";
 import ShoutoutForm from "./ShoutoutForm";
-import { addShoutout, fetchAllShoutouts } from "../services/ShoutoutApiService";
+import {
+  addShoutout,
+  fetchAllShoutouts,
+  deleteShoutout,
+} from "../services/ShoutoutApiService";
 import "./ShoutoutList.css";
 import { storage } from "../firebaseConfig";
 import { Link } from "react-router-dom";
@@ -27,14 +31,14 @@ const ShoutoutList = () => {
     });
   }
 
-  function deleteShoutout(index: number): void {
-    setShoutouts((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+  function handleDeleteShoutout(shoutoutId: string): void {
+    deleteShoutout(shoutoutId).then(loadShoutouts);
   }
 
   return (
     <div className="ShoutoutList">
       <ul>
-        {shoutouts.map((shoutout, i) => (
+        {shoutouts.map((shoutout) => (
           <li key={shoutout._id}>
             <div className="shoutOutDiv">
               <h3 className="shoutOutTo">
@@ -54,10 +58,8 @@ const ShoutoutList = () => {
               </p>
             </div>
             <button
-              key={i}
-              onClick={() => {
-                deleteShoutout(i);
-              }}
+              key={shoutout._id}
+              onClick={() => handleDeleteShoutout(shoutout._id!)}
             >
               Remove Shout Out
             </button>

@@ -5,6 +5,7 @@ import Shoutout from "../models/shoutout-api-model";
 import { useEffect, useState } from "react";
 import {
   addShoutout,
+  deleteShoutout,
   fetchAllShoutouts,
   fetchShoutoutsByTo,
 } from "../services/ShoutoutApiService";
@@ -29,8 +30,8 @@ const ShoutoutListByUser = () => {
     fetchShoutoutsByTo(name).then((response) => setShoutouts(response));
   }
 
-  function deleteShoutout(index: number): void {
-    setShoutouts((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+  function handleDeleteShoutout(shoutoutId: string): void {
+    deleteShoutout(shoutoutId).then(loadShoutouts);
   }
 
   useEffect(() => {
@@ -38,20 +39,30 @@ const ShoutoutListByUser = () => {
   }, [name]);
   return (
     <div className="ShoutoutListByUser">
+      <Link to="/" className="backLink">
+        Back To All Shout Outs
+      </Link>
       <ul>
-        {shoutouts.map((shoutout, i) => (
+        {shoutouts.map((shoutout) => (
           <li key={shoutout._id}>
             <div className="shoutOutDiv">
-              <p className="shoutOutTo">
-                <h3>Shout out to {shoutout.to}</h3>
-                {`- from ${shoutout.from}`}
-              </p>
+              <h3 className="shoutOutTo">Shout out to {shoutout.to}</h3>
+              {`- from ${shoutout.from}`}
               <p className="shoutOutMessage">{shoutout.message}</p>
+              <p>
+                {shoutout.imageUrl && (
+                  <img
+                    className="shoutoutImage"
+                    src={shoutout.imageUrl}
+                    alt=""
+                  />
+                )}
+              </p>
             </div>
             <button
-              key={i}
+              key={shoutout._id}
               onClick={() => {
-                deleteShoutout(i);
+                handleDeleteShoutout(shoutout._id!);
               }}
             >
               Remove Shout Out

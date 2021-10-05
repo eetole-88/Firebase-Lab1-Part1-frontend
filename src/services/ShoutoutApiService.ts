@@ -23,3 +23,7 @@ export function fetchShoutoutsByTo(name: string): Promise<Shoutout[]> {
     })
     .then((res) => res.data);
 }
+
+export function deleteShoutout(shoutoutId: string): Promise<void> {
+  return axios.delete(`${baseUrl}/shoutouts/${encodeURIComponent(shoutoutId)}`);
+}

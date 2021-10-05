@@ -14,7 +14,7 @@ const ShoutoutForm = ({ onSubmit }: Props) => {
   const [to, setTo] = useState("");
   const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
-  const userName: string = user?.displayName ?? "Anonyous";
+  const userName: string = user?.displayName ?? "Anonymous";
   const imageInputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -65,7 +65,7 @@ const ShoutoutForm = ({ onSubmit }: Props) => {
         <p>
           <label htmlFor="ShoutoutForm__from">From</label>
         </p>
-        <p>{userName}</p>
+        <p>-{userName}</p>
         <p>
           <label htmlFor="ShoutoutForm__message">Shout Out</label>
         </p>
