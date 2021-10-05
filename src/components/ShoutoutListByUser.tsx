@@ -1,7 +1,7 @@
 import "./ShoutoutListByUser.css";
 import ShoutoutForm from "./ShoutoutForm";
 import Shoutout from "../models/shoutout-api-model";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   addShoutout,
   deleteShoutout,
@@ -24,9 +24,12 @@ const ShoutoutListByUser = () => {
     });
   }
 
-  function loadShoutouts() {
-    fetchShoutoutsByTo(name).then((response) => setShoutouts(response));
-  }
+  const loadShoutouts = useCallback(
+    function () {
+      fetchShoutoutsByTo(name).then((response) => setShoutouts(response));
+    },
+    [name]
+  );
 
   function handleDeleteShoutout(shoutoutId: string): void {
     deleteShoutout(shoutoutId).then(loadShoutouts);
@@ -34,7 +37,7 @@ const ShoutoutListByUser = () => {
 
   useEffect(() => {
     loadShoutouts();
-  }, [loadShoutouts()]);
+  }, [loadShoutouts]);
 
   return (
     <div className="ShoutoutListByUser">
