@@ -1,12 +1,10 @@
 import "./ShoutoutListByUser.css";
-import ShoutoutList from "./ShoutoutList";
 import ShoutoutForm from "./ShoutoutForm";
 import Shoutout from "../models/shoutout-api-model";
 import { useEffect, useState } from "react";
 import {
   addShoutout,
   deleteShoutout,
-  fetchAllShoutouts,
   fetchShoutoutsByTo,
 } from "../services/ShoutoutApiService";
 import { useParams } from "react-router";
@@ -36,7 +34,7 @@ const ShoutoutListByUser = () => {
 
   useEffect(() => {
     loadShoutouts();
-  }, [name]);
+  }, [loadShoutouts()]);
 
   return (
     <div className="ShoutoutListByUser">

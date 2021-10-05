@@ -2,7 +2,6 @@ import { FormEvent, useContext, useRef, useState } from "react";
 import Shoutout from "..//models/shoutout-api-model";
 import "./ShoutoutForm.css";
 import { AuthContext } from "../context/auth-context";
-import { userInfo } from "os";
 import { storage } from "../firebaseConfig";
 import { getDownloadURL, uploadBytes, ref } from "@firebase/storage";
 

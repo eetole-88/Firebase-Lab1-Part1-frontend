@@ -16,7 +16,7 @@ function App() {
         {user ? (
           <div className="signed-in">
             Welcome
-            {user.photoURL && <img src={user.photoURL} />}
+            {user.photoURL && <img src={user.photoURL} alt="" />}
             {user.displayName}
             <button onClick={signOut}>Sign Out</button>
           </div>

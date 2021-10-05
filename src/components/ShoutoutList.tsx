@@ -7,13 +7,10 @@ import {
   deleteShoutout,
 } from "../services/ShoutoutApiService";
 import "./ShoutoutList.css";
-import { storage } from "../firebaseConfig";
 import { Link } from "react-router-dom";
-import { ref } from "firebase/storage";
 
 const ShoutoutList = () => {
   const [shoutouts, setShoutouts] = useState<Shoutout[]>([]);
-  const storageRef = ref(storage);
 
   useEffect(() => {
     loadShoutouts();
