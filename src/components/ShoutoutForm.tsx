@@ -7,10 +7,11 @@ import { getDownloadURL, uploadBytes, ref } from "@firebase/storage";
 
 interface Props {
   onSubmit: (item: Shoutout) => void;
+  name: string;
 }
 
-const ShoutoutForm = ({ onSubmit }: Props) => {
-  const [to, setTo] = useState("");
+const ShoutoutForm = ({ onSubmit, name }: Props) => {
+  const [to, setTo] = useState(name);
   const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
   const userName: string = user?.displayName ?? "Anonymous";
@@ -25,6 +26,8 @@ const ShoutoutForm = ({ onSubmit }: Props) => {
       message: message,
     };
 
+    console.log(to);
+    console.log(name);
     const files = imageInputRef.current?.files;
     if (files && files[0]) {
       const imageFile = files[0];
@@ -54,12 +57,16 @@ const ShoutoutForm = ({ onSubmit }: Props) => {
           <label htmlFor="ShoutoutForm__to">To</label>
         </p>
         <p>
-          <input
-            type="text"
-            id="ShoutoutForm__to"
-            value={to}
-            onChange={(e) => setTo(e.target.value)}
-          />
+          {!name ? (
+            <input
+              type="text"
+              id="ShoutoutForm__to"
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+            />
+          ) : (
+            <p>{name}</p>
+          )}
         </p>
         <p>
           <label htmlFor="ShoutoutForm__from">From</label>

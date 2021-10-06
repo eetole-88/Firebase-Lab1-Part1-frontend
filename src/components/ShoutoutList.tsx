@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shoutout from "../models/shoutout-api-model";
 import ShoutoutForm from "./ShoutoutForm";
 import {
@@ -8,9 +8,11 @@ import {
 } from "../services/ShoutoutApiService";
 import "./ShoutoutList.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth-context";
 
 const ShoutoutList = () => {
   const [shoutouts, setShoutouts] = useState<Shoutout[]>([]);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     loadShoutouts();
@@ -63,7 +65,7 @@ const ShoutoutList = () => {
           </li>
         ))}
       </ul>
-      <ShoutoutForm onSubmit={handleSubmit} />
+      {user && <ShoutoutForm onSubmit={handleSubmit} name={""} />}
     </div>
   );
 };

@@ -72,7 +72,7 @@ const ShoutoutListByUser = () => {
           </li>
         ))}
       </ul>
-      <ShoutoutForm onSubmit={handleSubmit} />
+      <ShoutoutForm onSubmit={handleSubmit} name={name} />
     </div>
   );
 };
